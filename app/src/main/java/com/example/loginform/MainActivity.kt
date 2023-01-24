@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -30,7 +31,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    loginForm()
+                    LoginForm()
                 }
             }
         }
@@ -38,7 +39,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun loginForm() {
+fun LoginForm() {
     var usernameInput: String by remember { mutableStateOf("") }
     var passwordInput: String by remember { mutableStateOf("") }
     Column(
@@ -46,7 +47,7 @@ fun loginForm() {
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text(
-            text = "Login",
+            text = stringResource(R.string.login),
             fontSize = 36.sp,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colors.primary,
@@ -58,8 +59,11 @@ fun loginForm() {
             value = usernameInput,
             onValueChange = {usernameInput = it},
             singleLine = true,
-            label = { Text(text = "Username") },
-            trailingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = "Email Icon")},
+            label = { Text(text = stringResource(R.string.username)) },
+            trailingIcon = { Icon(
+                imageVector = Icons.Default.Email,
+                contentDescription = stringResource(R.string.email)
+            )},
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
         )
@@ -67,8 +71,11 @@ fun loginForm() {
             value = passwordInput,
             onValueChange = {passwordInput = it},
             singleLine = true,
-            label = { Text(text = "Password") },
-            trailingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "Password")},
+            label = { Text(text = stringResource(R.string.password)) },
+            trailingIcon = { Icon(
+                imageVector = Icons.Default.Lock,
+                contentDescription = stringResource(R.string.password)
+            )},
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             visualTransformation = PasswordVisualTransformation(),
             modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
@@ -81,7 +88,7 @@ fun loginForm() {
                 .padding(vertical = 8.dp)
         )
         {
-            Text(text = "Submit", fontSize = 20.sp)
+            Text(text = stringResource(R.string.submit), fontSize = 20.sp)
         }
 
     }
@@ -92,6 +99,6 @@ fun loginForm() {
 @Composable
 fun DefaultPreview() {
     LoginFormTheme {
-        loginForm()
+        LoginForm()
     }
 }
